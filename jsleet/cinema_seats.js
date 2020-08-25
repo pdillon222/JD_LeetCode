@@ -6,6 +6,7 @@ var maxNumberOfFamilies = function(n, reservedSeats) {
   let rsrv_in_range = (seats, seat_start, seat_end, reservations) => {
     return seats.slice(seat_start, seat_end).map(seat => {
       return reservations.includes(seat)}).every((element) => element === false)};
+  // TODO - create function that stops looping & returns true once reservation found
   reservedSeats.map(function(subArray) {
     if (subArray[0] in seatMap === false){
       seatMap[subArray[0]] = [subArray[1]];
