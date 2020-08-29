@@ -30,7 +30,8 @@ var maxNumberOfFamilies = function(n, reservedSeats) {
                 rsrv_in_range(seatNums, 4, 8, seatMap[row])){
       max_arrangements += 1;
     } 
-  }); 
+  });
+  console.log(max_arrangements); 
   return max_arrangements; 
 };
 
@@ -41,5 +42,11 @@ var reservedSeats = [[1,2],[1,3],[1,8],[2,6],[3,1],[3,10]];
 n = 4
 reservedSeats = [[4,3],[1,4],[4,6],[1,7]]
 // values above return -> 4 ###
+
+
+n = 2
+reservedSeats = [[2,1],[1,8],[2,6]]
+// values above return -> 2 ###
+
 
 maxNumberOfFamilies(n, reservedSeats);
