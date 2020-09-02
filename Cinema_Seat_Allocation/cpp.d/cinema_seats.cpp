@@ -24,15 +24,15 @@ public:
       while (counter < end and ! int_in_vector){
         cout << "Seeking " << counter << " in ";
         for (auto x: seats) cout << x << " ";
-        cout << endl; 
+        cout << endl;
         int_in_vector = find(seats.begin(), seats.end(), counter) != seats.end();
         if (int_in_vector) cout << "!! Found reservation at seat " << counter << endl;
         counter++;
-      } 
+      }
       cout << endl;
       return int_in_vector;
     }
-     
+
     int maxNumberOfFamilies(int n, vector<vector<int>>& reservedSeats) {
 
       // construct a map of rows - whith a vector of all reserved seats in row
@@ -75,7 +75,7 @@ public:
         cout << endl;
       }
       cout << this->seat_combinations << endl;
-      return this->seat_combinations;       
+      return this->seat_combinations;
     }
 };
 
@@ -88,7 +88,7 @@ int main(){
   reservedSeats = {{4,3},{1,4},{4,6},{1,7}}; // -> 4
 
   Solution solution;
-  solution.maxNumberOfFamilies(n, reservedSeats);  
+  solution.maxNumberOfFamilies(n, reservedSeats);
   return 0;
 }
 
@@ -112,7 +112,7 @@ reservedSeats = {{1,2},{1,3},{1,8},{2,6},{3,1},{3,10}}
 ### values above return -> 4 ####
 */
 
-/*
+/* Optimized solution:
 #include<unordered_map>
 class Solution {
 public:
@@ -127,9 +127,8 @@ public:
         res += 2*(n-taken.size());  //count all non-taken rows
         for(auto& it : taken)
             if(it.second != 7) res++;   //if at least one block is available - take it
-        
+
         return res;
     }
 };
 */
-
