@@ -14,7 +14,7 @@ class Solution:
     - _file is a long string representing a list of lists -> [[\d,\d],[\d,\d]...]]
     - convert string to list of lists of ints
     '''
-    with open('reservedSeats','r') as rs:
+    with open(_file, 'r') as rs:
       reservations = [[int(seat.replace('[','').replace(']',''))
                       for seat in _lst.split('*')]
                       for _lst in re.sub(r'\[(\d*),(\d*)\]', r'[\1*\2]',
@@ -76,7 +76,7 @@ if __name__=="__main__":
   ### values above return -> 4 ###
 
   n = 2646
-  reservedSeats = Solution.reservationsFromFile()
+  reservedSeats = Solution.reservationsFromFile('../.inputs/reservedSeats')
   ### answer is right -> 2084
   ### need to optimize for time -> currenty at 7228 ms
 

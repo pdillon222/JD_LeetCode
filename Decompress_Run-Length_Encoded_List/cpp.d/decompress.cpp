@@ -11,8 +11,6 @@ class Solution {
 };
 
 
-
-
 vector<int> Solution::decompressRLElist(vector<int>& nums){
   vector<int> dcmprsd_nums;
   for (int i=0; i < nums.size() - 1; i+= 2){
@@ -27,11 +25,9 @@ vector<int> Solution::decompressRLElist(vector<int>& nums){
 }
 
 
-
-
 int main(){
   Solution sol;
   vector<int> nums = {1,1,2,3};
-  sol.decompressRLElist(nums); 
+  sol.decompressRLElist(nums);
   return 0;
 }
