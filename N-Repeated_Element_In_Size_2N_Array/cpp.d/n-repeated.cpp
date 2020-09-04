@@ -4,12 +4,6 @@
 #include <vector>
 using namespace std;
 
-//g++ -std=c++11 n-repeated.cpp -o nout
-/*
-In a array A of size 2N, there are N+1 unique elements, 
-and exactly one of these elements is repeated N times.
-Return the element repeated N times
-*/
 
 class Solution{
   public:
@@ -20,7 +14,7 @@ int Solution::repeatedNTimes(vector<int>& A)
 {
   int key;
   unordered_map<int, int> num_counts;
-  unordered_map<int, int>::const_iterator found;  
+  unordered_map<int, int>::const_iterator found;
 
   for (auto i: A)
   {
@@ -37,7 +31,7 @@ int Solution::repeatedNTimes(vector<int>& A)
         return i;
     }
   }
-  
+
   return 0;
 }
 
