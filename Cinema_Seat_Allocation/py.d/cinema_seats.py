@@ -1,5 +1,3 @@
-#!/home/james/VirtualEnvs/jenv38/bin/python
-
 import re
 import cProfile
 import argparse
