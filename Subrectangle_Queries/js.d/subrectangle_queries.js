@@ -1,15 +1,14 @@
-#!/usr/bin/node
 
 /**
  * @param {number[][]} rectangle
  */
 var SubrectangleQueries = function(rectangle) {
-  this.rectangle = rectangle; 
+  this.rectangle = rectangle;
 };
 
 
 SubrectangleQueries.prototype.updateSubrectangle = function(row1, col1, row2, col2, newValue) {
-  // this is much faster:
+  // Optimized:
   /*
   for (let i = row1; i <= row2; i++) {
     for (let j = col1; j <= col2; j++) {
@@ -17,7 +16,6 @@ SubrectangleQueries.prototype.updateSubrectangle = function(row1, col1, row2, co
     }
   }
   */
-
 
   for (i=row1; i <= row2; i++){
     for (j=col1; j <= col2; j++){
@@ -29,7 +27,7 @@ SubrectangleQueries.prototype.updateSubrectangle = function(row1, col1, row2, co
 
 SubrectangleQueries.prototype.getValue = function(row, col) {
   console.log(this.rectangle);
-  return this.rectangle[row][col]; 
+  return this.rectangle[row][col];
 };
 
 var rectangle = [[1,2,1],

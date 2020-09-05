@@ -1,4 +1,3 @@
-#!/usr/bin/node
 
 /**
  * @param {number} num
@@ -18,3 +17,5 @@ var numberOfSteps  = function(num) {
   counter +=1;
   return counter;
 };
+
+console.log(numberOfSteps(123)) // => 12

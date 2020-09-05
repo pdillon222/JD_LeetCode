@@ -1,5 +1,3 @@
-#!/usr/bin/node
-
 
 var reverseWords = function(s){
   s = s.trimEnd();
@@ -9,16 +7,6 @@ var reverseWords = function(s){
   str_array = str_array.reverse();
   return str_array.join(" ");
 };
-
-
-/* - Optimal solution
-var reverseWords = function(s) {
-    s=s.trim().replace(/(?=\s)(\s)(?=\s)/g,'')
-    
-   return s.split(' ').reverse().join(' ')
-};
-*/
-
 
 var test_strings = [
   "  a good  example  ",
@@ -33,6 +21,11 @@ var test_strings = [
   "a"
 ];
 
-
-//test_strings.map(x => console.log("_" + x + "_"));
 test_strings.map(x => console.log("_"+reverseWords(x)+"_"));
+
+/* - Optimal solution
+var reverseWords = function(s) {
+   s=s.trim().replace(/(?=\s)(\s)(?=\s)/g,'') 
+   return s.split(' ').reverse().join(' ')
+};
+*/
