@@ -1,27 +1,3 @@
-
-/*
-A general test-bed, for C++ fun times
-for c++11 compilation: g++ -std=c++11 your_file.cpp -o your_program
-*/
-
-/*
-  If you add periods ('.') between some characters in the local name 
-  part of an email address, mail sent there will be forwarded to the 
-  same address without dots in the local name.  For example, 
-  "alice.z@leetcode.com" and "alicez@leetcode.com" forward to the 
-  same email address.  (Note that this rule does not apply for 
-  domain names.)
-  If you add a plus ('+') in the local name, everything after the 
-  first plus sign will be ignored. This allows certain emails to be 
-  filtered, for example m.y+name@email.com will be forwarded to 
-  my@email.com.  (Again, this rule does not apply for domain names.)
-
-  It is possible to use both of these rules at the same time.
-
-  Given a list of emails, we send one email to each address in the list.  
-  How many different addresses actually receive mails?
-*/
-
 #include <iostream>
 #include <iomanip>
 #include <memory>
@@ -40,7 +16,7 @@ class Solution{
 
 
 /*
-  Return the index of the '@' char within the email string  
+  Return the index of the '@' char within the email string
 */
 int Solution::indexOfAmpersand(const string email)
 {
@@ -49,8 +25,8 @@ int Solution::indexOfAmpersand(const string email)
     if (email[index] == '@')
     {
       return index;
-    }  
-    index++;  
+    }
+    index++;
   } while (index < email.size());
   return index;
 }
@@ -69,9 +45,9 @@ string Solution::transformString(string& email)
   //printf("Original value of and_index = %d\n", *and_index);
   for (int i=0; i< *and_index; i++)
   {
-    *and_index = indexOfAmpersand(email); 
+    *and_index = indexOfAmpersand(email);
     if (email[i] == '.')
-      email.erase(i,1);    
+      email.erase(i,1);
   }
 
   *and_index = indexOfAmpersand(email);
@@ -83,11 +59,11 @@ string Solution::transformString(string& email)
       plus_flag = true;
     counter++;
   } while (counter < *and_index and plus_flag == false);
-  
-  if (plus_flag)
-    email.erase(counter - 1, *and_index - counter + 1);   
 
-  delete and_index; 
+  if (plus_flag)
+    email.erase(counter - 1, *and_index - counter + 1);
+
+  delete and_index;
   return email;
 }
 
@@ -130,19 +106,19 @@ int Solution::numUniqueEmails(vector<string>& emails)
     {
       cout << "Match not found, adding " << emails[i] << " to unique emails\n\n";
       unique_emails.push_back(emails[i]);
-      found_flag = false; 
+      found_flag = false;
     }
   }
-  
+
   cout << "\nDisplaying altered emails\n";
   for (int i=0; i < emails.size(); i++)
     cout << emails[i] << endl;
   cout << "\nDisplaying emails set\n";
   for (int i=0; i < unique_emails.size(); i++)
     cout << unique_emails[i] << endl;
- 
+
   cout << "\n\nNumber of unique emails: " << unique_emails.size() << "\n";
- 
+
   return unique_emails.size();
 }
 
@@ -171,4 +147,3 @@ int main(){
   vector<string> email_vector(arr, arr + sizeof(arr)/sizeof(string));
   sol1.numUniqueEmails(email_vector);
 }
-
