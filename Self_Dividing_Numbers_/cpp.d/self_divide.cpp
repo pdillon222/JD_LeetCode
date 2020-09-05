@@ -1,8 +1,3 @@
-/*
-A general test-bed, for C++ fun times
-for c++11 compilation: g++ -std=c++11 your_file.cpp -o your_program
-*/
-
 #include <iostream>
 #include <iomanip>
 #include <memory>
@@ -25,11 +20,11 @@ public:
            - if right % int != 0
         */
         div_zero_flag = true;
-         
+
         self_divide.push_back(left);
       }
- 
-      return self_divide; 
+
+      return self_divide;
     }
 };
 
@@ -38,7 +33,7 @@ int main(){
   int left = 1, right = 22;
   Solution sol;
   vector<int> nums = sol.selfDividingNumbers(left, right);
-  /* 
+  /*
   for (int i=0; i < nums.size(); i++){
     cout << nums[i] << endl;
   }*/
@@ -47,8 +42,6 @@ int main(){
   for (i = 0; i < tester.size(); i++){
 
   }
-  
+
   return 0;
 }
-
-

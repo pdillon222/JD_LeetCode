@@ -7,7 +7,7 @@ init(autoreset=True)
 
 class Solution:
   @classmethod
-  def reservationsFromFile(_file):
+  def reservationsFromFile(_file) -> List:
     '''
     - _file is a long string representing a list of lists -> [[\d,\d],[\d,\d]...]]
     - convert string to list of lists of ints

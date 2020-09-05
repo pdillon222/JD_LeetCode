@@ -1,7 +1,7 @@
 from typing import List
 
 class Solution:
-  def numUniqueEmails(self, emails: List[str]):
+  def numUniqueEmails(self, emails: List[str]) -> int:
     emails = [email.split('@') for email in emails]
     #remove '.' from email[0] in emails if '.' in email[0]
     #strip characters after '+' if '+' in email[0]

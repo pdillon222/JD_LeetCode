@@ -1,5 +1,7 @@
+from typing import List
+
 class Solution:
-  def repeatedNTimes(self, A):
+  def repeatedNTimes(self, A: List[int]) -> int:
     counts = {}
     for i in A:
       if i not in counts:
