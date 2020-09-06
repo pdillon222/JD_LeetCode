@@ -1,47 +1,50 @@
 #include <iostream>
-#include <iomanip>
-#include <memory>
 #include <vector>
-#include <string.h>
 #include <stdio.h>
 using namespace std;
 
 
 class Solution {
-public:
-    vector<int> selfDividingNumbers(int left, int right) {
-      bool div_zero_flag;
-      vector<int> self_divide;
-      for (;left <= right; left++){
-        /*
-         - split integer->right into individual integers (init as new vector)
-         - init boolean, testing for 0 division
-         - loop through integers in new vector
-           - if right % int != 0
-        */
-        div_zero_flag = true;
+private:
+  bool div_zero_flag;
+  void divisible_int(int sub_num, int num){
+    if (sub_num >= 10 and this->div_zero_flag)
+      divisible_int(sub_num / 10, num);
+    sub_num = sub_num % 10;
+    cout << "Testing divisibility of " << num << "/" << sub_num << endl;
+    if (sub_num != 0 && num % sub_num == 0){
+      cout << num << " is divisible by " << sub_num << endl;
+    } else {
+      cout << num << " is not divisible by " << sub_num << "!!!" << endl;
+      this->div_zero_flag = false;
+    }
+    cout << endl;
+  }
 
+public:
+  vector<int> selfDividingNumbers(int left, int right){
+    vector<int> self_divide;
+    for (;left <= right; left++){
+      this->div_zero_flag = true;
+      this->divisible_int(left, left);
+      if (this->div_zero_flag){
+        cout << left << " is self divisible; appending" << endl;
         self_divide.push_back(left);
       }
-
-      return self_divide;
+      cout << "Done iterating for " << left << endl << endl;
     }
+
+    return self_divide;
+  }
 };
 
 
 int main(){
-  int left = 1, right = 22;
+  int left = 1, right = 22; // => => [1,2,3,4,5,6,7,8,9,11,12,15,22]
   Solution sol;
   vector<int> nums = sol.selfDividingNumbers(left, right);
-  /*
-  for (int i=0; i < nums.size(); i++){
-    cout << nums[i] << endl;
-  }*/
-
-  vector<int> tester = {144,543,66,79,85,954};
-  for (i = 0; i < tester.size(); i++){
-
-  }
-
+  for (auto x: nums)
+    cout << x << " ";
+  cout << endl;
   return 0;
 }
