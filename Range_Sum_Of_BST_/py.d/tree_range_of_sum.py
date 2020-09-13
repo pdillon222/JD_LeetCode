@@ -1,5 +1,12 @@
 from typing import List
 
+# Definition for a binary tree node.
+# class TreeNode:
+#   def __init__(self, val=0, left=None, right=None):
+#     self.val = val
+#     self.left = left
+#     self.right = right
+
 # TODO - construct a method to build the tree from given list:
 # [10,5,15,3,7,13,18,1,null,6] => becomes
 # L=7, R=15 => 45
@@ -20,12 +27,16 @@ class TreeNode:
     self.right = None
 
   def insert_node(self, val, location=None):
+      print(location)
       if not location:
+        print(f"found no value - inserting {val}")
         location = TreeNode(val)
       else:
         if val > location.node:
+          print(f"{val} is > {location.node} - going right")
           self.insert_node(val, location.right)
         else:
+          print(f"{val} is < {location.node} - going left")
           self.insert_node(val, location.left)
 
   def ascend_tree(self, node=None):
@@ -65,12 +76,16 @@ if __name__=="__main__":
   tree_vals = [10,5,15,3,7,13,18,1,None,6]
   tree_vals = [val for val in tree_vals if type(val) == int]
   new_tree = TreeNode(tree_vals.pop(0))
-  print(tree_vals)
+  print(new_tree)
+  for val in tree_vals:
+    new_tree.insert_node(val, location=new_tree)
+  '''
   iter_vals = map(lambda x: new_tree.insert_node(x), tree_vals)
   while True:
     try:
       next(iter_vals)
     except StopIteration:
       break
+  '''
   print(new_tree.node, new_tree.left, new_tree.right)
   #new_tree.ascend_tree()
