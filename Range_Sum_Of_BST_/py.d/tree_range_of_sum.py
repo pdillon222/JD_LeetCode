@@ -26,17 +26,18 @@ class TreeNode:
     self.left = None
     self.right = None
 
-  def insert_node(self, val, location=None):
+  def insert_node(self, tree_node, location=None):
       print(location)
       if not location:
         print(f"found no value - inserting {val}")
-        location = TreeNode(val)
+        #print("\n")
+        location = tree_node
       else:
-        if val > location.node:
-          print(f"{val} is > {location.node} - going right")
+        if tree_node.node > location.node:
+          print(f"{tree_node.node} is > {location.node} - going right")
           self.insert_node(val, location.right)
         else:
-          print(f"{val} is < {location.node} - going left")
+          print(f"{tree_node.node} is < {location.node} - going left")
           self.insert_node(val, location.left)
 
   def ascend_tree(self, node=None):
@@ -76,9 +77,9 @@ if __name__=="__main__":
   tree_vals = [10,5,15,3,7,13,18,1,None,6]
   tree_vals = [val for val in tree_vals if type(val) == int]
   new_tree = TreeNode(tree_vals.pop(0))
-  print(new_tree)
+  #print(new_tree)
   for val in tree_vals:
-    new_tree.insert_node(val, location=new_tree)
+    new_tree.insert_node(TreeNode(val), location=new_tree)
   '''
   iter_vals = map(lambda x: new_tree.insert_node(x), tree_vals)
   while True:
@@ -87,5 +88,5 @@ if __name__=="__main__":
     except StopIteration:
       break
   '''
-  print(new_tree.node, new_tree.left, new_tree.right)
+  #print(new_tree.node, new_tree.left, new_tree.right)
   #new_tree.ascend_tree()
