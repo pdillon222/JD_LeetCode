@@ -1,4 +1,5 @@
 from typing import List
+from collections import deque
 
 # Definition for a binary tree node.
 # class TreeNode:
@@ -22,23 +23,25 @@ from typing import List
 # Definition for a binary tree node.
 class TreeNode:
   def __init__(self, val):
-    self.node = val
+    self.val = val
     self.left = None
     self.right = None
 
   def insert_node(self, tree_node, location=None):
-      print(location)
+      print(f'Location address == {str(location)}')
+      print(f'tree_node val = {tree_node.val}, address == {tree_node}')
       if not location:
-        print(f"found no value - inserting {val}")
+        print(f"found no value - inserting {tree_node.val}")
         #print("\n")
         location = tree_node
+        print("\n")
       else:
-        if tree_node.node > location.node:
-          print(f"{tree_node.node} is > {location.node} - going right")
-          self.insert_node(val, location.right)
+        if tree_node.val > location.val:
+          print(f"{tree_node.val} is > {location.val} - going right")
+          self.insert_node(tree_node, location.right)
         else:
-          print(f"{tree_node.node} is < {location.node} - going left")
-          self.insert_node(val, location.left)
+          print(f"{tree_node.val} is < {location.val} - going left")
+          self.insert_node(tree_node, location.left)
 
   def ascend_tree(self, node=None):
     if node == None:
@@ -59,6 +62,25 @@ if __name__=="__main__":
   sol = Solution()
   # [10,5,15,3,7,13,18,1,None,6], L=7, R=15 => 45
 
+  tree_vals = [10,5,15,3,7,13,18,1,None,6]
+  tree_vals = deque([val for val in tree_vals if type(val) == int])
+
+  new_tree = TreeNode(tree_vals.popleft())
+  another_tree = TreeNode(tree_vals.popleft())
+  one_more_tree = TreeNode(5)
+  print(new_tree, another_tree, one_more_tree)
+
+
+
+
+
+
+
+
+
+
+
+
   # manual btree definition
   # define root left
   '''
@@ -74,12 +96,13 @@ if __name__=="__main__":
   # define root
   root = TreeNode(val=10, left=l, right=r)
   '''
-  tree_vals = [10,5,15,3,7,13,18,1,None,6]
-  tree_vals = [val for val in tree_vals if type(val) == int]
+
+  '''
   new_tree = TreeNode(tree_vals.pop(0))
   #print(new_tree)
   for val in tree_vals:
     new_tree.insert_node(TreeNode(val), location=new_tree)
+  '''
   '''
   iter_vals = map(lambda x: new_tree.insert_node(x), tree_vals)
   while True:
