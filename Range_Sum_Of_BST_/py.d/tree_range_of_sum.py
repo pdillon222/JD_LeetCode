@@ -1,13 +1,6 @@
 from typing import List
 from collections import deque
 
-# Definition for a binary tree node.
-# class TreeNode:
-#   def __init__(self, val=0, left=None, right=None):
-#     self.val = val
-#     self.left = left
-#     self.right = right
-
 # [10,5,15,3,7,13,18,1,null,6] => becomes
 # L=7, R=15 => 45
 '''
@@ -21,11 +14,6 @@ from collections import deque
 '''
 # Definition for a binary tree node.
 class TreeNode:
-  # TODO:
-  #   - Put together working solution for LeetCode question
-  #   - Finish ascend_tree function                                             [X]
-  #   - Create a __repr__, displaying node/branch structure in JSON string
-
   def __init__(self, val=0, left=None, right=None):
     self.val = val
     self.left = None
@@ -60,8 +48,20 @@ class TreeNode:
       cls.ascend_tree(node.right)
 
 class Solution:
-  def rangeSumBST(self, root: TreeNode, L: int, R: int) -> int:
+  def __init__(self):
+    self.range_nodes = []
 
+  def seek_nodes_in_range(self, L, R, node=None):
+    if node:
+      if node.val > L: self.seek_nodes_in_range(L, R, node.left)
+      if node.val >= L and node.val <= R:
+        #print(f'Node {node.val} would be appended')
+        self.range_nodes.append(node.val)
+      if node.val < R: self.seek_nodes_in_range(L, R, node.right)
+
+  def rangeSumBST(self, root: TreeNode, L: int, R: int) -> int:
+    self.seek_nodes_in_range(L, R, root)
+    return sum(self.range_nodes)
 
 if __name__=="__main__":
   sol = Solution()
@@ -77,6 +77,6 @@ if __name__=="__main__":
     new_tree.insert_node(tree_vals.popleft(), location=new_tree)
 
   # ascend tree and display node values
-  #TreeNode.ascend_tree(node=new_tree) # => works
+  TreeNode.ascend_tree(node=new_tree) # => works
 
   print(sol.rangeSumBST(new_tree, left, right)) # should return 45
