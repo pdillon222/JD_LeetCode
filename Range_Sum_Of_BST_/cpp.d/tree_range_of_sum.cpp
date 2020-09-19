@@ -23,6 +23,27 @@ struct TreeNode {
    TreeNode() : val(0), left(nullptr), right(nullptr) {}
    TreeNode(int x) : val(x), left(nullptr), right(nullptr) {}
    TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) {}
+   // Recursive function will build tree from node values
+   void tree_builder(int val, TreeNode *location){
+     TreeNode *new_node = nullptr;
+     new_node = new TreeNode;
+     new_node->val = val;
+     if (not location){
+       cout << "emplacing TreeNode w/ value " << val << endl;
+       *location = new_node;
+       cout << location->val << endl;
+       //location = TreeNode(val);
+       //cout << location->val << " " << location->left << " " << location->right << endl;
+       //cout << location->val << endl;
+       //cout << location->val << endl;
+     } else if (val > location->val){
+         cout << val << " is > than " << location->val << "; Going right" << endl;
+         tree_builder(val, location=location->right);
+     } else {
+         cout << val << " is < than " << location->right << "; Going left" << endl;
+         tree_builder(val, location=location->left);
+     }
+   }
 };
 
 
@@ -32,12 +53,6 @@ class Solution {
       cout << root->val << endl;
       cout << root->right << endl;
       cout << root->left << endl;
-    }
-    TreeNode tree_builder(vector<int>){
-      // construct bst from vector of ints
-      TreeNode built_tree(5);
-      cout << built_tree.val << endl;
-      return built_tree;
     }
 };
 
@@ -62,8 +77,10 @@ int main(){
   */
 
   Solution *sol = new Solution;
-  sol->tree_builder(node_vals);
-  sol->rangeSumBST(new_tree, left, right);
+  for (auto val: node_vals)
+    new_tree->tree_builder(val, new_tree);
+  //sol->rangeSumBST(new_tree, left, right);
+  cout << new_tree->val << endl;
   delete sol, new_tree;
   return 0;
 }
