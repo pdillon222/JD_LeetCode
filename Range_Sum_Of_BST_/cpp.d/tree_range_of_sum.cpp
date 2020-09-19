@@ -30,7 +30,7 @@ struct TreeNode {
      new_node->val = val;
      if (location == nullptr){
        cout << "emplacing TreeNode w/ value " << val << endl;
-       location = &new_node;
+       location = new_node;
        cout << location->val << endl;
        //location = TreeNode(val);
        //cout << location->val << " " << location->left << " " << location->right << endl;
