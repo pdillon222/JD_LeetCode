@@ -24,13 +24,13 @@ struct TreeNode {
    TreeNode(int x) : val(x), left(nullptr), right(nullptr) {}
    TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) {}
    // Recursive function will build tree from node values
-   void tree_builder(int val, TreeNode *location){
+   void tree_builder(int val, TreeNode *&location){
      TreeNode *new_node = nullptr;
      new_node = new TreeNode;
      new_node->val = val;
-     if (not location){
+     if (location == nullptr){
        cout << "emplacing TreeNode w/ value " << val << endl;
-       *location = new_node;
+       location = &new_node;
        cout << location->val << endl;
        //location = TreeNode(val);
        //cout << location->val << " " << location->left << " " << location->right << endl;
@@ -53,6 +53,7 @@ class Solution {
       cout << root->val << endl;
       cout << root->right << endl;
       cout << root->left << endl;
+      return 0;
     }
 };
 
@@ -80,7 +81,10 @@ int main(){
   for (auto val: node_vals)
     new_tree->tree_builder(val, new_tree);
   //sol->rangeSumBST(new_tree, left, right);
-  cout << new_tree->val << endl;
-  delete sol, new_tree;
+  cout << new_tree->val << endl << endl;
+
+  cout << new_tree->right->val << " " << new_tree->left->val << endl;
+  delete sol;
+  delete new_tree;
   return 0;
 }
