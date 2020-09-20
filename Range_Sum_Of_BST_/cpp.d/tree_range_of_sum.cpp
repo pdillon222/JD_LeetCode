@@ -15,47 +15,64 @@ using namespace std;
            /     /
           1     6
 */
-// Definition for a binary tree node:
-struct TreeNode {
-   int val;
-   TreeNode *left;
-   TreeNode *right;
-   TreeNode() : val(0), left(nullptr), right(nullptr) {}
-   TreeNode(int x) : val(x), left(nullptr), right(nullptr) {}
-   TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) {}
-   // Recursive function will build tree from node values
-   void tree_builder(int val, TreeNode *&location){
-     TreeNode *new_node = nullptr;
-     new_node = new TreeNode;
-     new_node->val = val;
-     if (location == nullptr){
-       cout << "emplacing TreeNode w/ value " << val << endl;
-       location = new_node;
-       cout << location->val << endl;
-       //location = TreeNode(val);
-       //cout << location->val << " " << location->left << " " << location->right << endl;
-       //cout << location->val << endl;
-       //cout << location->val << endl;
-     } else if (val > location->val){
-         cout << val << " is > than " << location->val << "; Going right" << endl;
-         tree_builder(val, location=location->right);
-     } else {
-         cout << val << " is < than " << location->right << "; Going left" << endl;
-         tree_builder(val, location=location->left);
-     }
-   }
+// Definition for a binary tree node
+struct TreeNode
+{
+  int val;         // Holds the integer val in node
+  TreeNode *left;    // Pointer to the left child node
+  TreeNode *right;   // Pointer to the right child node
+  TreeNode() : val(0), left(nullptr), right(nullptr) {}
+  TreeNode(int x) : val(x), left(nullptr), right(nullptr) {}
+  TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) {}
 };
 
 
 class Solution {
+  private:
+    // Private recursive node insert function,
+    // called by public TreeNode initializer `insertNode`
+    void insert(TreeNode *&nodePtr, TreeNode *&newNode){
+      if (nodePtr == nullptr)
+        nodePtr = newNode;                     // Insert the node
+      else if (newNode->val < nodePtr->val)
+        insert(nodePtr->left, newNode);        // Search the left branch
+      else
+        insert(nodePtr->right, newNode);       // Search the right branch
+    }
+
   public:
+    TreeNode *root;      // Pointer to the root node
+    // public interface to emplace nodes into root TreeNode
+    void insertNode(int num, TreeNode *nodePtr=nullptr){
+      TreeNode *newNode = nullptr;
+      // Create a new node and store num in it
+      newNode = new TreeNode;
+      newNode->val = num;
+      newNode->left = newNode->right = nullptr;
+      // if no arg for nodePtr: use object TreeNode root
+      // TODO - how to execute below as ternary oneliner
+      if (nodePtr == nullptr){
+        printf("Inserting %d into object TreeNode root\n", num);
+        insert(root, newNode);
+      } else {
+        printf("Inserting %d into TreeNode obj at mem address -> %p\n", num, &nodePtr);
+        insert(nodePtr, newNode);
+      }
+    }
     int rangeSumBST(TreeNode* root, int L, int R) {
-      cout << root->val << endl;
-      cout << root->right << endl;
-      cout << root->left << endl;
+
       return 0;
     }
 };
+
+
+// TODO -
+/*
+   - Create ascendTree function
+   - Make root private
+   - create public copy constructor (copies obj.root to TreeNode
+       instantiated outside of class)
+*/
 
 
 int main(){
@@ -64,27 +81,14 @@ int main(){
   right = 15;
   vector<int> node_vals = {10,5,15,3,7,13,18,1,6};
 
-  // using default constructor
-  TreeNode *new_tree = new TreeNode();
-
-  // initializing val w/ int
-  //TreeNode *new_tree = new TreeNode(5);
-
-  // initializing val w/ int, and L&R w/ TreeNode pointers
-  /*
-  TreeNode *left_branch = new TreeNode();
-  TreeNode *right_branch = new TreeNode();
-  TreeNode *new_tree = new TreeNode(10, left_branch, right_branch);
-  */
-
   Solution *sol = new Solution;
   for (auto val: node_vals)
-    new_tree->tree_builder(val, new_tree);
-  //sol->rangeSumBST(new_tree, left, right);
-  cout << new_tree->val << endl << endl;
+    sol->insertNode(val);
 
-  cout << new_tree->right->val << " " << new_tree->left->val << endl;
+  //display tree structure in ascending value order
+  //sol->ascendTree();
+
+  //sol->rangeSumBST(sol->root, left, right);
   delete sol;
-  delete new_tree;
   return 0;
 }
