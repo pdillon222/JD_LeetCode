@@ -29,8 +29,10 @@ struct TreeNode
 
 class Solution {
   private:
-    // Private recursive node insert function,
-    // called by public TreeNode initializer `insertNode`
+    ////
+    /* Private recursive node insert function,
+       called by public TreeNode initializer `insertNode`
+    */
     void insert(TreeNode *&nodePtr, TreeNode *&newNode){
       if (nodePtr == nullptr)
         nodePtr = newNode;                     // Insert the node
@@ -39,9 +41,10 @@ class Solution {
       else
         insert(nodePtr->right, newNode);       // Search the right branch
     }
-
+    ////
+    TreeNode *root;                            // Pointer to the root node
   public:
-    TreeNode *root;      // Pointer to the root node
+    ////
     // public interface to emplace nodes into root TreeNode
     void insertNode(int num, TreeNode *nodePtr=nullptr){
       TreeNode *newNode = nullptr;
@@ -59,18 +62,26 @@ class Solution {
         insert(nodePtr, newNode);
       }
     }
+    ////
+    ////
+    TreeNode copyRoot(){
+      return *this->root;
+    }
+    ////
+    ////
     int rangeSumBST(TreeNode* root, int L, int R) {
-
+      cout << "I will successfully run this Tree" << endl;
       return 0;
     }
+    ////
 };
 
 
 // TODO -
 /*
-   - Create ascendTree function
-   - Make root private
-   - create public copy constructor (copies obj.root to TreeNode
+   - Create ascendTree function                                                 [ ]
+   - Make root private                                                          [ ]
+   - create public copy constructor (copies obj.root to TreeNode                [X]
        instantiated outside of class)
 */
 
@@ -85,10 +96,15 @@ int main(){
   for (auto val: node_vals)
     sol->insertNode(val);
 
+  //copy new TreeNode from sol object to struct outside of class
+  TreeNode *newNode = new TreeNode;
+  *newNode = sol->copyRoot();
+
   //display tree structure in ascending value order
   //sol->ascendTree();
 
-  //sol->rangeSumBST(sol->root, left, right);
+  sol->rangeSumBST(newNode, left, right);
   delete sol;
+  delete newNode;
   return 0;
 }
