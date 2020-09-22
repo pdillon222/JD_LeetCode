@@ -69,21 +69,43 @@ class Solution {
     }
     ////
     ////
+    void ascendTree(TreeNode *nodeptr){
+      if (nodeptr){
+        ascendTree(nodeptr->left);
+        printf("%d\n", nodeptr->val);
+        ascendTree(nodeptr->right);
+      }
+    }
+    ////
+    /*
+    - Functions above are merely for TreeNode construction and description
+      Leetcode solution functions are below:
+    */
+    ////
+    void nodesInRange(TreeNode *nodeptr, vector<int> &nodeRange, int L, int R){
+      if (nodeptr){
+         if (nodeptr->val >= L && nodeptr->val <= R){
+           printf("Pushing back %d\n", nodeptr->val);
+           nodeRange.push_back(nodeptr->val);
+         }
+         if (nodeptr->val > L)
+           nodesInRange(nodeptr->left, nodeRange, L, R);
+         if (nodeptr->val < R)
+           nodesInRange(nodeptr->right, nodeRange, L, R);
+      }
+    }
+    ////
+    ////
     int rangeSumBST(TreeNode* root, int L, int R) {
-      cout << "I will successfully run this Tree" << endl;
-      return 0;
+      vector<int> nodeRange;
+      int nodeSum = 0;
+      nodesInRange(root, nodeRange, L, R);
+      for (auto node: nodeRange)
+        nodeSum += node;
+      return nodeSum;
     }
     ////
 };
-
-
-// TODO -
-/*
-   - Create ascendTree function                                                 [ ]
-   - Make root private                                                          [ ]
-   - create public copy constructor (copies obj.root to TreeNode                [X]
-       instantiated outside of class)
-*/
 
 
 int main(){
@@ -99,8 +121,9 @@ int main(){
   //copy new TreeNode from sol object to struct outside of class
   TreeNode *newNode = new TreeNode;
   *newNode = sol->copyRoot();
-
   //display tree structure in ascending value order
+  sol->ascendTree(newNode);
+  cout << endl;
   //sol->ascendTree();
 
   sol->rangeSumBST(newNode, left, right);
@@ -108,3 +131,28 @@ int main(){
   delete newNode;
   return 0;
 }
+
+
+/* Optimized solution:
+static auto speedup = [](){
+    std::ios::sync_with_stdio(false);
+    std::cin.tie(nullptr);
+    std::cout.tie(nullptr);
+    return nullptr;
+}();
+
+
+class Solution {
+public:
+    int rangeSumBST(TreeNode* root, int L, int R) {
+        if (root == NULL)
+            return 0;
+        int x=rangeSumBST(root->left,L,R);
+        int y=rangeSumBST(root->right,L,R);
+        if(root->val>=L && root->val<=R)
+                return (root->val + x + y);
+        else
+            return x+y;
+    }
+};
+*/
