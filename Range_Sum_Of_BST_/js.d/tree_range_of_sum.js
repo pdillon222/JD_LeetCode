@@ -26,16 +26,26 @@ class TreeNode {
     this.right = (right===undefined ? null : right)
   }
   // Node insertion function
-  insertNode (val){
-    if (!this.val){
-      this.val = val;
+  insertNode (newNode, location){
+    location = (location===undefined ? null : location)
+    if (!location){
+      location = newNode;
     } else {
-      if (val < this.val){
+      if (newNode.val < location.val){
         // go left
+        this.insertNode(newNode, location.left)
       } else {
         // go right
+        this.insertNode(newNode, location.right)
       }
     }
+  }
+
+  // External treenode generator function
+  newNode (val) {
+    // construct a new TreeNode from val
+    newNode = new TreeNode(val)
+    this.insertNode(newNode)
   }
 }
 
