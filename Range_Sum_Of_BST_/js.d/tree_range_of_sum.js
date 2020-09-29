@@ -26,26 +26,41 @@ class TreeNode {
     this.right = (right===undefined ? null : right)
   }
   // Node insertion function
-  insertNode (newNode, location){
-    location = (location===undefined ? null : location)
-    if (!location){
-      location = newNode;
-    } else {
-      if (newNode.val < location.val){
-        // go left
-        this.insertNode(newNode, location.left)
+  insertNode (val, location){
+    //location = (location===undefined ? null : location)
+    if (val){
+      if (!location){
+        console.log(`Inserting node value == ${val}\n`)
+        location = new TreeNode(val);
       } else {
-        // go right
-        this.insertNode(newNode, location.right)
+        if (val < location.val){
+          // go left
+          if (! location.left){
+            location.left = new TreeNode(val);
+          } else {
+            console.log(`${val} < ${location.val}: going left`)
+            this.insertNode(val, location.left)
+          }
+        } else {
+          // go right
+          if (! location.right){
+            location.right = new TreeNode(val);
+          } else {
+            console.log(`${val} > ${location.val}: going right`)
+            this.insertNode(val, location.right)
+          }
+        }
       }
     }
   }
 
   // External treenode generator function
-  newNode (val) {
+  newNode (val, location) {
     // construct a new TreeNode from val
-    newNode = new TreeNode(val)
-    this.insertNode(newNode)
+    if (val){
+      let newNode = new TreeNode(val);
+      this.insertNode(newNode, location);
+    }
   }
 }
 
@@ -57,9 +72,14 @@ class TreeNode {
  */
 var rangeSumBST = function(root, L, R) {
     console.log(root);
-    root.insertNode(5);
-    console.log(root);
+    console.log(root.left.left.left);
+    console.log(root.left.right.left);
 };
 
-var tn = new TreeNode(4);
+
+let nodeVals = [10,5,15,3,7,13,18,1,null,6];
+var tn = new TreeNode(nodeVals.shift())
+nodeVals.map(n => tn.insertNode(n, tn));
+
+
 rangeSumBST(tn, 7, 15);
