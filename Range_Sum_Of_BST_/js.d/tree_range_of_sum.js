@@ -71,9 +71,19 @@ class TreeNode {
  * @return {number}
  */
 var rangeSumBST = function(root, L, R) {
-    console.log(root);
-    console.log(root.left.left.left);
-    console.log(root.left.right.left);
+  let stack = [root];
+  let rangeNodes = [];
+  let findNodesInRange = (node) => {
+    if (node.val >= L && node.val <= R){
+      rangeNodes.push(node.val);
+    }
+  }
+  let counter = 0;
+  while (stack.length > 0){
+    let poppedNode = stack.shift();
+    findNodesInRange(poppedNode);
+    counter += 1;
+  }
 };
 
 
