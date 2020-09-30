@@ -53,16 +53,7 @@ class TreeNode {
       }
     }
   }
-
-  // External treenode generator function
-  newNode (val, location) {
-    // construct a new TreeNode from val
-    if (val){
-      let newNode = new TreeNode(val);
-      this.insertNode(newNode, location);
-    }
-  }
-}
+};
 
 /** LeetCode function - passing in constructed BST
  * @param {TreeNode} root
@@ -74,16 +65,14 @@ var rangeSumBST = function(root, L, R) {
   let stack = [root];
   let rangeNodes = [];
   let findNodesInRange = (node) => {
-    if (node.val >= L && node.val <= R){
-      rangeNodes.push(node.val);
-    }
-  }
-  let counter = 0;
+    if (node && node.val >= L && node.val <= R) rangeNodes.push(node.val);
+    if (node.left && node.val >= node.left.val) stack.push(node.left);
+    if (node.right && node.val <= node.right.val) stack.push(node.right);
+  };
   while (stack.length > 0){
-    let poppedNode = stack.shift();
-    findNodesInRange(poppedNode);
-    counter += 1;
+    findNodesInRange(stack.shift());
   }
+  return rangeNodes.reduce((a,b) => a+b, 0);
 };
 
 
@@ -91,5 +80,4 @@ let nodeVals = [10,5,15,3,7,13,18,1,null,6];
 var tn = new TreeNode(nodeVals.shift())
 nodeVals.map(n => tn.insertNode(n, tn));
 
-
-rangeSumBST(tn, 7, 15);
+console.log(rangeSumBST(tn, 7, 15));
