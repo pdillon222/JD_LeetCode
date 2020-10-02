@@ -10,4 +10,6 @@ if __name__=="__main__":
         "bbbbb": 1,
         "pwwkew": 3
     }
-    print(list(map(lambda _str: sol.lengthOfLongestSubstring(_str, test_map) == test_map[_str], test_map.keys())))
+    print(list(map(lambda _str:
+        sol.lengthOfLongestSubstring(_str, test_map) 
+        == test_map[_str], test_map.keys())))
