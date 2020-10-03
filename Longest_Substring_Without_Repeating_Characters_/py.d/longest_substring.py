@@ -1,6 +1,9 @@
+
+from test_assertions import map_cases
+
 class Solution:
-    def lengthOfLongestSubstring(self, s: str, test_map: dict) -> int:
-        return 3
+    def lengthOfLongestSubstring(self, s: str) -> int:
+        return len(s)
 
 
 if __name__=="__main__":
@@ -10,6 +13,5 @@ if __name__=="__main__":
         "bbbbb": 1,
         "pwwkew": 3
     }
-    print(list(map(lambda _str:
-        sol.lengthOfLongestSubstring(_str, test_map) 
-        == test_map[_str], test_map.keys())))
+
+    map_cases(test_map, sol.lengthOfLongestSubstring)
