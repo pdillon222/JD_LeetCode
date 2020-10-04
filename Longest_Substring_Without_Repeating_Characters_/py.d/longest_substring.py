@@ -2,11 +2,12 @@ import cProfile
 import argparse
 from test_assertions import map_cases
 
+
 class Solution:
     def lengthOfLongestSubstring(self, s: str) -> int:
-        print('who run it?...')
-        return len(s)
-
+        max_substr_len = 0
+        index_l = 0
+        # brute-force: start at index[n], compare index[n+1]
 
 if __name__=="__main__":
     parser = argparse.ArgumentParser()
@@ -30,5 +31,6 @@ if __name__=="__main__":
             delim = f'{"=" * (26 + len(profile_str))}'
             print(f'{delim}\n{"=":13}{profile_str}{" ":12}=\n{delim}')
         else:
-            print("Running function w/ no args")
+            func_str = "Running function w/ no args"
+            print(f'{"-" * len(func_str)}\n{func_str}\n{"-" * len(func_str)}')
             sol.lengthOfLongestSubstring("abcabcbb")
