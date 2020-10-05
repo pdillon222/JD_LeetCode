@@ -6,8 +6,28 @@ from test_assertions import map_cases
 class Solution:
     def lengthOfLongestSubstring(self, s: str) -> int:
         max_substr_len = 0
-        index_l = 0
-        # brute-force: start at index[n], compare index[n+1]
+        left_index = 0
+
+        ''' FAIL -> only compares l_index w/ each char to the right
+        #for i in range(0, len(s)):
+        while left_index < len(s):
+            right_index = left_index + 1
+            dup_char_flag = False
+            print(f'Starting at index -> {left_index} == {s[left_index]}')
+            #for j in range(i+1, len(s)):
+            while right_index < len(s) and not dup_char_flag:
+                print(f'{s[left_index]} => {s[right_index]}')
+                dup_char_flag = s[left_index] == s[right_index]
+                substr_len = len(s[left_index:right_index+1])
+                right_index += 1
+            if not dup_char_flag and max_substr_len < substr_len:
+                print(f'Adding substr -> "{s[left_index:right_index]}"')
+                max_substr_len = substr_len
+            print('\n')
+            left_index += 1
+        '''
+        print(max_substr_len)
+        return max_substr_len
 
 if __name__=="__main__":
     parser = argparse.ArgumentParser()
