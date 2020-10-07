@@ -34,7 +34,7 @@ def arg_func_runner(func: Callable,
             delim = f'{"=" * (26 + len(profile_str))}'
             print(f'{delim}\n{"=":13}{profile_str}{" ":12}=\n{delim}')
         else:
-            func_str = "Running function w/ no args"
-            print(f'{"-" * len(func_str)}\n{func_str}\n{"-" * len(func_str)}')
-            args_list = 
+            funcout = "Running function w/ no args"
+            print(f'{"-" * len(funcout)}\n{funcout}\n{"-" * len(funcout)}')
+            args_list = [arg for arg in [func_str, func_int, func_list, func_dict] if arg]
             func(*args_list)

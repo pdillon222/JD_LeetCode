@@ -26,4 +26,4 @@ if __name__=="__main__":
         "pwwkew": 3
     }
 
-    arg_func_runner(sol.lengthOfLongestSubstring, test_map, func_arg="abcabcbb")
+    arg_func_runner(sol.lengthOfLongestSubstring, test_map, func_str="abcabcbb")
