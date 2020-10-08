@@ -14,7 +14,6 @@ def argument_parser() -> ArgsList:
     parser = argparse.ArgumentParser()
     for arg in ARGS_LIST:
         parser.add_argument(arg, action='store_true')
-    print(parser.parse_args())
     return parser.parse_args()
 
 def arg_func_runner(func: Callable,

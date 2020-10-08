@@ -32,18 +32,17 @@ class Solution:
                 # append index to repeat_char_indices[s]
                 repeat_char_indices[s[counter]].append(counter)
             counter += 1
-        print(repeat_char_indices)
+        if set([len(indices) for indices in repeat_char_indices.values()]) == {1}:
+            max_substr_len = len(s)
+            return max_substr_len
         for indices in repeat_char_indices.values():
             counter = 0
-            print(indices)
             if len(indices) > 1:
                 while counter < len(indices) - 1:
-                    print(f'comparing {indices[counter]} w/ {indices[counter + 1]}')
                     if indices[counter + 1] - indices[counter] > max_substr_len:
                         max_substr_len = indices[counter + 1] - indices[counter]
                     counter += 1
-            print("\n")
-            return max_substr_len
+        return max_substr_len
 
 
 if __name__=="__main__":
@@ -56,7 +55,9 @@ if __name__=="__main__":
         "abcabcbb": 3,
         "bbbbb": 1,
         "pwwkew": 3,
+        "abcdefg": 7,
+        "aab": 2
     }
 
-    arg_func_runner(sol.lengthOfLongestSubstring, test_map, func_str="abcabcbb")
+    arg_func_runner(sol.lengthOfLongestSubstring, test_map, func_str="pwwkew")
     #sol.lengthOfLongestSubstring("")
