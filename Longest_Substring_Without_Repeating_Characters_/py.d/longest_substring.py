@@ -14,6 +14,9 @@ class Solution:
         print(max_substr_len)
         return max_substr_len
 '''
+''' - Index length comparison: fails because only considering distance between
+        indices of repeated characters; need to make sure index range does not
+        have repeating characters other than the specific char being tested
 class Solution:
     def lengthOfLongestSubstring(self, s: str) -> int:
         # find all repeating chars
@@ -42,6 +45,28 @@ class Solution:
                     if indices[counter + 1] - indices[counter] > max_substr_len:
                         max_substr_len = indices[counter + 1] - indices[counter]
                     counter += 1
+        return max_substr_len
+'''
+
+class Solution:
+    def lengthOfLongestSubstring(self, s: str) -> int:
+        max_substr_len = 0
+        repeat_char_indices = {}
+        counter = 0
+        while counter < len(s):
+            if s[counter] not in repeat_char_indices:
+                # initialize key w/ list containing index of char
+                repeat_char_indices[s[counter]] = [counter]
+            else:
+                # append index to repeat_char_indices[s]
+                repeat_char_indices[s[counter]].append(counter)
+            counter += 1
+        if set([len(indices) for indices in repeat_char_indices.values()]) == {1}:
+            max_substr_len = len(s)
+            return max_substr_len
+        # TODO - do stuff
+
+        ######
         return max_substr_len
 
 
