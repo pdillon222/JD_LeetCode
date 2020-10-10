@@ -24,17 +24,14 @@ class Solution:
         # TODO - do stuff
         for char, indices in repeat_char_indices.items():
             counter = 0
-            print(f'{char} -> {indices}')
-            # a special case occurs when we get to last element in index array
-            # l_index == index && r_index == len(s) - 1
-            # if ((len(s) - 1) - index > max_substr_len
+            print(f'Repeating char "{char}" at -> {indices}')
+            # iterate through lists of indices for repeat char, compare distance n[0] -> n[1]
             while counter < len(indices):
-                #print(indices[counter])
                 if counter != len(indices) - 1:
                     print(f'{indices[counter]} -> {indices[counter + 1]}')
-                    # if indices[counter] > l_index and indices[counter + 1] < r_index:
-                        # change the l and r indices and change max_substr_len to diff
                 else:
+                    # if index is last in list; check distance from it to end of string
+                    # determine whether or not duplicate chars are in this range
                     print(f'comparing index {indices[counter]} w/ end of string')
                     print(f'{indices[counter]} -> {len(s) - 1}')
                 counter += 1
