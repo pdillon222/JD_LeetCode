@@ -9,6 +9,7 @@ class Solution:
         l_index = 0
         r_index = len(s) - 1
         #print(s[l_index:r_index + 1]) # the full string
+        print(s)
         repeat_char_indices = {}
         counter = 0
         while counter < len(s):
@@ -31,13 +32,13 @@ class Solution:
             # check substring from s[indices[counter]:len(s)] - if counter == len(indices) - 1
             while counter < len(indices):
                 if counter == 0:
-                    print(s[0:])
-                    pass
-                elif counter == len(counter) - 1:
-                    pass
+                    print("Compare start of string up to first index")
+                elif counter == len(indices) - 1:
+                    print("Compare last index up to end of string")
                 else:
                     # compare substring between indices
-                    pass
+                    print("Compare index up to next index")
+                counter += 1
 
         return max_substr_len
 
