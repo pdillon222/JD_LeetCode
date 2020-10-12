@@ -4,7 +4,19 @@ from profiler import arg_func_runner
 
 
 class Solution:
-    def lengthOfLongestSubstring(self, s: str) -> int:
+    def bruteForceLongestSubstring(self, s: str) -> int:
+        max_substr_len = 0
+        for i in range(len(s)):
+            for j in range(i+1, len(s)+1):
+                if len(s[i:j]) == len(set(s[i:j])) and \
+                len(s[i:j]) > max_substr_len:
+                    max_substr_len = len(s[i:j])
+        print(max_substr_len)
+        return max_substr_len
+
+    def lengthOfLongestSubstring(self, s: str, brute_force=False) -> int:
+        if brute_force:
+            return self.bruteForceLongestSubstring(s)
         max_substr_len = 0
         l_index = 0
         r_index = len(s) - 1
@@ -54,4 +66,4 @@ if __name__=="__main__":
         "abzdebbfgqbfwzmacb": 9
     }
 
-    arg_func_runner(sol.lengthOfLongestSubstring, test_map, func_str="abcabcbb")
+    arg_func_runner(sol.lengthOfLongestSubstring, test_map, func_str="abcabcbb", brute_force=True)

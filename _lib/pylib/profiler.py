@@ -21,7 +21,8 @@ def arg_func_runner(func: Callable,
                     func_str: str = None,
                     func_int: int = None,
                     func_list: List = None,
-                    func_dict: dict = None) -> None:
+                    func_dict: dict = None,
+                    brute_force: bool = False) -> None:
     args = argument_parser()
     if args.test_cases:
         map_cases(test_map, func)
@@ -35,5 +36,5 @@ def arg_func_runner(func: Callable,
         else:
             funcout = "Running function w/ no args"
             print(f'{"-" * len(funcout)}\n{funcout}\n{"-" * len(funcout)}')
-            args_list = [arg for arg in [func_str, func_int, func_list, func_dict] if arg]
+            args_list = [arg for arg in [func_str, func_int, func_list, func_dict, brute_force] if arg]
             func(*args_list)
