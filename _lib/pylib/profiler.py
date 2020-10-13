@@ -7,6 +7,7 @@ ArgsList = TypeVar('ArgsList')
 ARGS_LIST = [
     '--profile',
     '--test-cases',
+    '--brute-force',
     '--helper'
 ]
 
@@ -27,6 +28,7 @@ def arg_func_runner(func: Callable,
     if args.test_cases:
         map_cases(test_map, func)
     else:
+        brute_force = True if args.brute_force else False
         if args.profile:
             # run code profiling:
             #cProfile.runctx('g(x,y)', {'x': n, 'y': m, 'g': func},{})

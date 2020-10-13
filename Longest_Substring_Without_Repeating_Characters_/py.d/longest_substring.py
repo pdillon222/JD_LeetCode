@@ -66,4 +66,4 @@ if __name__=="__main__":
         "abzdebbfgqbfwzmacb": 9
     }
 
-    arg_func_runner(sol.lengthOfLongestSubstring, test_map, func_str="abcabcbb", brute_force=True)
+    arg_func_runner(sol.lengthOfLongestSubstring, test_map, func_str="abcabcbb")
