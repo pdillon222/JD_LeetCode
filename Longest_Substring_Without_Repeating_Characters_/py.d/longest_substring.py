@@ -4,9 +4,16 @@ from profiler import arg_func_runner
 
 
 class Solution:
+    @classmethod
+    def string_from_file(cls, file_path):
+        with open(file_path, 'r') as fp:
+            return fp.read()
+
     def bruteForceLongestSubstring(self, s: str) -> int:
         max_substr_len = 0
         for i in range(len(s)):
+            #if len(s[i:]) <= max_substr_len:
+                #return max_substr_len
             for j in range(i+1, len(s)+1):
                 if len(s[i:j]) == len(set(s[i:j])) and \
                 len(s[i:j]) > max_substr_len:
@@ -66,4 +73,5 @@ if __name__=="__main__":
         "abzdebbfgqbfwzmacb": 9
     }
 
-    arg_func_runner(sol.lengthOfLongestSubstring, test_map, func_str="abcabcbb")
+    #arg_func_runner(sol.lengthOfLongestSubstring, test_map, func_str="abcabcbb")
+    arg_func_runner(sol.lengthOfLongestSubstring, test_map, func_str=sol.string_from_file('../text.d/big_string.txt'))

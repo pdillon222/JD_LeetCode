@@ -25,10 +25,10 @@ def arg_func_runner(func: Callable,
                     func_dict: dict = None,
                     brute_force: bool = False) -> None:
     args = argument_parser()
+    brute_force = True if args.brute_force else False
     if args.test_cases:
-        map_cases(test_map, func)
+        map_cases(test_map, func, brute_force)
     else:
-        brute_force = True if args.brute_force else False
         if args.profile:
             # run code profiling:
             #cProfile.runctx('g(x,y)', {'x': n, 'y': m, 'g': func},{})
