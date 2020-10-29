@@ -7,8 +7,7 @@ ArgsList = TypeVar('ArgsList')
 ARGS_LIST = [
     '--profile',
     '--test-cases',
-    '--brute-force',
-    '--helper'
+    '--brute-force'
 ]
 
 def argument_parser() -> ArgsList:

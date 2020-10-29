@@ -73,5 +73,4 @@ if __name__=="__main__":
         "abzdebbfgqbfwzmacb": 9
     }
 
-    #arg_func_runner(sol.lengthOfLongestSubstring, test_map, func_str="abcabcbb")
-    arg_func_runner(sol.lengthOfLongestSubstring, test_map, func_str=sol.string_from_file('../text.d/big_string.txt'))
+    arg_func_runner(sol.lengthOfLongestSubstring, test_map, func_str="abcabcbb")
