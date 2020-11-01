@@ -42,7 +42,8 @@ class Solution:
         # if each index list has <= 1 value, no repeat chars -> return len(s)
         if set([len(indices) for indices in repeat_char_indices.values()]) == {1}:
             return len(s)
-
+        print(repeat_char_indices)
+        '''
         for char, indices in repeat_char_indices.items():
             counter = 0
             print(f'"{char}" -> {indices}')
@@ -58,7 +59,8 @@ class Solution:
                     # compare substring between indices
                     print("Compare index up to next index")
                 counter += 1
-
+        '''
+        print(max_substr_len)
         return max_substr_len
 
 

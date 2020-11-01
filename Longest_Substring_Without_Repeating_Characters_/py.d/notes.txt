@@ -1,0 +1,18 @@
+How to solve this?:
+------------------
+------------------
+
+- construct map:
+  - key = char
+  - val = list of indices
+
+- if all index arrays == 1
+  - we return the length of the string (all chars unique)
+
+- what do we do with our map of char -> array of indices ?
+  - we are looking for the longest substring of non repeat chars
+  - if we start with the assumption that the substring of s:
+    - s[0:len(s)-1]
+    - we are interested in determining whether s[0]
+
+- testing substring s[0]
