@@ -9,6 +9,20 @@ class Solution:
         with open(file_path, 'r') as fp:
             return fp.read()
 
+    @classmethod
+    def repeat_char_dict(cls, s: str) -> dict:
+        repeat_char_indices = {}
+        counter = 0
+        while counter < len(s):
+            if s[counter] not in repeat_char_indices:
+                # initialize key w/ list containing index of char
+                repeat_char_indices[s[counter]] = [counter]
+            else:
+                # append index to repeat_char_indices[s]
+                repeat_char_indices[s[counter]].append(counter)
+            counter += 1
+        return repeat_char_indices
+
     def bruteForceLongestSubstring(self, s: str) -> int:
         max_substr_len = 0
         for i in range(len(s)):
@@ -25,41 +39,15 @@ class Solution:
         if brute_force:
             return self.bruteForceLongestSubstring(s)
         max_substr_len = 0
-        l_index = 0
-        r_index = len(s) - 1
-        #print(s[l_index:r_index + 1]) # the full string
         print(s)
-        repeat_char_indices = {}
-        counter = 0
-        while counter < len(s):
-            if s[counter] not in repeat_char_indices:
-                # initialize key w/ list containing index of char
-                repeat_char_indices[s[counter]] = [counter]
-            else:
-                # append index to repeat_char_indices[s]
-                repeat_char_indices[s[counter]].append(counter)
-            counter += 1
+        repeat_char_indices = __class__.repeat_char_dict(s)
         # if each index list has <= 1 value, no repeat chars -> return len(s)
-        if set([len(indices) for indices in repeat_char_indices.values()]) == {1}:
-            return len(s)
+        if set([len(indices) for indices
+            in repeat_char_indices.values()]) == {1}: return len(s)
         print(repeat_char_indices)
-        '''
-        for char, indices in repeat_char_indices.items():
-            counter = 0
-            print(f'"{char}" -> {indices}')
-            # check substring from s[0:indices[0]] - if counter == 0
-            # check substring from s[indices[counter]:indices[counter + 1]]
-            # check substring from s[indices[counter]:len(s)] - if counter == len(indices) - 1
-            while counter < len(indices):
-                if counter == 0:
-                    print("Compare start of string up to first index")
-                elif counter == len(indices) - 1:
-                    print("Compare last index up to end of string")
-                else:
-                    # compare substring between indices
-                    print("Compare index up to next index")
-                counter += 1
-        '''
+        ###############
+
+        ###############
         print(max_substr_len)
         return max_substr_len
 
