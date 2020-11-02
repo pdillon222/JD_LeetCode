@@ -2,6 +2,10 @@ How to solve this?:
 ------------------
 ------------------
 
+- Cheating:
+  - https://www.geeksforgeeks.org/length-of-the-longest-substring-without-repeating-characters/
+
+
 - construct map:
   - key = char
   - val = list of indices
@@ -16,3 +20,30 @@ How to solve this?:
     - we are interested in determining whether s[0]
 
 - testing substring s[0]
+
+
+def lengthOfLongestSubstring(self, s: str, brute_force=False) -> int:
+    if brute_force:
+        return self.bruteForceLongestSubstring(s)
+    n = len(s)
+    # Result
+    res = 0
+    for i in range(n):
+        # Note : Default values in
+        # visited are false
+        visited = [0] * 256
+        for j in range(i, n):
+            # If current character is visited
+            # Break the loop
+            if (visited[ord(s[j])] == True):
+                break
+            # Else update the result if
+            # this window is larger, and mark
+            # current character as visited.
+            else:
+                res = max(res, j - i + 1)
+                visited[ord(s[j])] = True
+        # Remove the first character of previous
+        # window
+        visited[ord(s[i])] = False
+    return res
