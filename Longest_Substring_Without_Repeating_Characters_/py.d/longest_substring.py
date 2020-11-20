@@ -38,16 +38,30 @@ class Solution:
     def lengthOfLongestSubstring(self, s: str, brute_force=False) -> int:
         if brute_force:
             return self.bruteForceLongestSubstring(s)
+        visited_chars = [s[0]]
         max_substr_len = 0
-        print(s)
-        repeat_char_indices = __class__.repeat_char_dict(s)
-        # if each index list has <= 1 value, no repeat chars -> return len(s)
-        if set([len(indices) for indices
-            in repeat_char_indices.values()]) == {1}: return len(s)
-        print(repeat_char_indices)
-        ###############
-
-        ###############
+        l_index = 0
+        ############### Magic #################
+        while l_index < len(s) - 1:
+            r_index = l_index
+            while r_index < len(s):
+                print(f'Testing substrings from index -> {l_index}')
+                r_index = l_index + 1
+                print(f'checking {s[r_index]} in visited_chars')
+                if s[r_index] in visited_chars:
+                    print(f'Found char -> {s[r_index]} in visited_chars')
+                    print(f'Substring -> {s[l_index:r_index+1]}')
+                    substr_len = len(s[l_index:r_index+1])
+                    if substr_len > max_substr_len:
+                        print(f'Updating new max_substr_len -> {substr_len}')
+                        max_substr_len = substr_len
+                else:
+                    # substr_char not found in visited_chars, append
+                    print(f'Char -> {s[r_index]} NOT found in visited_chars; appending')
+                    visited_chars.append(s[r_index])
+                r_index += 1
+            l_index += 1
+        ############# End Magic ###############
         print(max_substr_len)
         return max_substr_len
 
