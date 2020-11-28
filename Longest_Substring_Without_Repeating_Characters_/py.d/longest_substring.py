@@ -55,6 +55,7 @@ class Solution:
                     if substr_len > max_substr_len:
                         print(f'Updating new max_substr_len -> {substr_len - 1}')
                         max_substr_len = substr_len - 1
+                    l_index = r_index
                     break
                 else:
                     # substr_char not found in visited_chars, append
@@ -83,7 +84,7 @@ if __name__=="__main__":
         "pwwkew": 3,
         "abcdefg": 7,
         "aab": 2,
-        "abzdebbfgqbfwzmacb": 9
+        "abzdebbfgqbfwzmacb": 7
     }
 
     #arg_func_runner(sol.lengthOfLongestSubstring, test_map, func_str="abcabcbb")
