@@ -41,26 +41,35 @@ class Solution:
         visited_chars = [s[0]]
         max_substr_len = 0
         l_index = 0
+        r_index = l_index + 1
         ############### Magic #################
-        while l_index < len(s) - 1:
-            r_index = l_index
+        while l_index < len(s) :
+            substr_len = len(s[l_index:r_index+1])
             while r_index < len(s):
                 print(f'Testing substrings from index -> {l_index}')
-                r_index = l_index + 1
+                #r_index = l_index + 1
                 print(f'checking {s[r_index]} in visited_chars')
                 if s[r_index] in visited_chars:
                     print(f'Found char -> {s[r_index]} in visited_chars')
                     print(f'Substring -> {s[l_index:r_index+1]}')
-                    substr_len = len(s[l_index:r_index+1])
                     if substr_len > max_substr_len:
-                        print(f'Updating new max_substr_len -> {substr_len}')
-                        max_substr_len = substr_len
+                        print(f'Updating new max_substr_len -> {substr_len - 1}')
+                        max_substr_len = substr_len - 1
+                    break
                 else:
                     # substr_char not found in visited_chars, append
                     print(f'Char -> {s[r_index]} NOT found in visited_chars; appending')
                     visited_chars.append(s[r_index])
+                    if substr_len == len(s): return len(s)
+                    substr_len += 1
+                    print(f'new substr len -> {substr_len}')
+                    if substr_len > max_substr_len:
+                        print(f'Updating new max_substr_len -> {substr_len - 1}')
+                        max_substr_len = substr_len - 1
                 r_index += 1
             l_index += 1
+            r_index = l_index + 1
+            print('\n\n')
         ############# End Magic ###############
         print(max_substr_len)
         return max_substr_len
@@ -77,4 +86,5 @@ if __name__=="__main__":
         "abzdebbfgqbfwzmacb": 9
     }
 
-    arg_func_runner(sol.lengthOfLongestSubstring, test_map, func_str="abcabcbb")
+    #arg_func_runner(sol.lengthOfLongestSubstring, test_map, func_str="abcabcbb")
+    arg_func_runner(sol.lengthOfLongestSubstring, test_map, func_str="abcdefg")
