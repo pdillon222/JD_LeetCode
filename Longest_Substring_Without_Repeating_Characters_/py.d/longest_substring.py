@@ -53,7 +53,6 @@ class Solution:
                 print(f'found char -> {s[r_index]} in visited_chars '
                       f'{RED_OCT}; setting l_index -> {r_index}\n')
                 l_index = r_index
-                r_index = l_index
                 crnt_substr_len = 0
                 visited_chars = [s[l_index]]
             else:
