@@ -39,6 +39,7 @@ class Solution:
     def lengthOfLongestSubstring(self, s: str, brute_force=False) -> int:
         if brute_force:
             return self.bruteForceLongestSubstring(s)
+        if not s: return 0
         visited_chars = [s[0]]
         max_substr_len = 0
         l_index = 0
@@ -46,18 +47,18 @@ class Solution:
         ############### Magic #################
         while (l_index < len(s)) and (r_index < len(s)):
             crnt_substr_len = len(s[l_index:r_index+1])
-            #print(f'checking substring -> {s[l_index:r_index+1]}, length == {crnt_substr_len}')
+            print(f'checking substring -> {s[l_index:r_index+1]}, length == {crnt_substr_len}')
             if s[r_index] in visited_chars:
-                #print(f'found char -> {s[r_index]} in visited_chars {RED_OCT}; setting l_index -> {r_index}\n')
+                print(f'found char -> {s[r_index]} in visited_chars {RED_OCT}; setting l_index -> {r_index}\n')
                 l_index = r_index
                 r_index = l_index
                 crnt_substr_len = 0
                 visited_chars = [s[l_index]]
             else:
-                #print(f'char -> {s[r_index]} not found in visited_chars {GREEN_CHECK}; appending and incrementing crnt_substr')
+                print(f'char -> {s[r_index]} not found in visited_chars {GREEN_CHECK}; appending and incrementing crnt_substr')
                 visited_chars.append(s[r_index])
             if crnt_substr_len > max_substr_len:
-                #print(f'Substring {s[l_index:r_index+1]} of length {crnt_substr_len} > max_substr_len {max_substr_len} -> {GREEN_CHECK}{GREEN_CHECK}')
+                print(f'Substring {s[l_index:r_index+1]} of length {crnt_substr_len} > max_substr_len {max_substr_len} -> {GREEN_CHECK}{GREEN_CHECK}')
                 max_substr_len = crnt_substr_len
             r_index += 1
         ############# End Magic ###############
@@ -74,8 +75,8 @@ if __name__=="__main__":
         "pwwkew": 3,
         "abcdefg": 7,
         "aab": 2,
-        "abzdebbfgqbfwzmacb": 7
+        "dvdf": 3
     }
 
-    arg_func_runner(sol.lengthOfLongestSubstring, test_map, func_str="abcabcbb")
+    arg_func_runner(sol.lengthOfLongestSubstring, test_map, func_str="dvdf")
     #arg_func_runner(sol.lengthOfLongestSubstring, test_map, func_str="abcdefg")
