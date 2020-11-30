@@ -39,35 +39,22 @@ class Solution:
     def lengthOfLongestSubstring(self, s: str, brute_force=False) -> int:
         if brute_force:
             return self.bruteForceLongestSubstring(s)
-        if not s: return 0
-        visited_chars = [s[0]]
         max_substr_len = 0
-        l_index = 0
-        r_index = l_index + 1
         ############### Magic #################
-        while (l_index < len(s)) and (r_index < len(s)):
-            crnt_substr_len = len(s[l_index:r_index+1])
-            print(f'checking substring -> {s[l_index:r_index+1]}, '
-                  f'length == {crnt_substr_len}')
-            if s[r_index] in visited_chars:
-                print(f'found char -> {s[r_index]} in visited_chars '
-                      f'{RED_OCT}; setting l_index -> {r_index}\n')
-                l_index = r_index
-                crnt_substr_len = 0
-                visited_chars = [s[l_index]]
-            else:
-                print(f'char -> {s[r_index]} not found in visited_chars '
-                      f'{GREEN_CHECK}; appending and incrementing crnt_substr')
-                visited_chars.append(s[r_index])
-            if crnt_substr_len > max_substr_len:
-                print(f'Substring {s[l_index:r_index+1]} of length '
-                      f'{crnt_substr_len} > max_substr_len {max_substr_len} '
-                      f'-> {GREEN_CHECK}{GREEN_CHECK}')
-                max_substr_len = crnt_substr_len
-            r_index += 1
+        for i in range(len(s)):
+            visited_chars = [0] * 256
+            for j in range(i, len(s)):
+                # stop checking current substr if current char is visited
+                if (visited_chars[ord(s[j])] == True):
+                    break
+                # if not visited - update max substr len if current substr is >
+                # mark the current char as visited
+                else:
+                    max_substr_len = max(max_substr_len, j - i + 1)
+                    visited_chars[ord(s[j])] = True
+            # remove first char of previous window
+            visited_chars[ord(s[i])] = False
         ############# End Magic ###############
-        if not max_substr_len and visited_chars: max_substr_len = 1
-        print(max_substr_len)
         return max_substr_len
 
 
