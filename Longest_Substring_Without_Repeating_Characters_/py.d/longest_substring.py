@@ -36,9 +36,8 @@ class Solution:
         print(max_substr_len)
         return max_substr_len
 
-    def lengthOfLongestSubstring(self, s: str, brute_force=False) -> int:
-        if brute_force:
-            return self.bruteForceLongestSubstring(s)
+    def lengthOfLongestSubstring(self, s: str) -> int:
+        # slow 'window sliding' method -> O(n^3)
         max_substr_len = 0
         ############### Magic #################
         for i in range(len(s)):
@@ -57,6 +56,40 @@ class Solution:
         ############# End Magic ###############
         return max_substr_len
 
+    def lengthOfLongestSubstringLinearTime(self, s: str) -> int:
+        # Initialize the last index array as -1, -1 is used to store
+        # last index of every character
+        lastIndex = [-1] * 256
+        n = len(s)
+        max_substr_len = 0   # Result
+        i = 0
+        for j in range(0, n):
+            # Find the last index of str[j]
+            # Update i (starting index of current window)
+            # as maximum of current value of i and last
+            # index plus 1
+            i = max(i, lastIndex[ord(s[j])] + 1);
+            # Update result if we get a larger window
+            max_substr_len =  max(max_substr_len, j - i + 1)
+            # Update last index of j.
+            lastIndex[ord(s[j])] = j;
+        return max_substr_len
+
+    def lengthOfLongestSubstring24msSolution(self, s: str) -> int:
+        # code profiled at 24ms against LeetCode test-cases
+        if len(s)<2:
+            return len(s)
+        long_str=''
+        len_val=0
+        for i in range(len(s)):
+            if s[i] not in long_str:
+                long_str+=s[i]
+            else:
+                ref_ind=long_str.find(s[i])
+                len_val=max(len_val,len(long_str))
+                long_str=long_str[ref_ind+1:]+s[i]
+        return max(len_val,len(long_str))
+
 
 if __name__=="__main__":
     sol = Solution()
@@ -69,5 +102,8 @@ if __name__=="__main__":
         "dvdf": 3
     }
 
-    arg_func_runner(sol.lengthOfLongestSubstring, test_map, func_str="dvdf")
-    #arg_func_runner(sol.lengthOfLongestSubstring, test_map, func_str="abcdefg")
+    arg_func_runner(sol.lengthOfLongestSubstring, test_map, func_str="abcdefg")
+    print('\n\n')
+    arg_func_runner(sol.lengthOfLongestSubstringLinearTime, test_map, func_str="abcabcbb")
+    print('\n\n')
+    arg_func_runner(sol.lengthOfLongestSubstring24msSolution, test_map, func_str="pwwkew")
