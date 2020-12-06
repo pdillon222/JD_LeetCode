@@ -41,19 +41,24 @@ class Solution:
         max_substr_len = 0
         ############### Magic #################
         for i in range(len(s)):
+            print('resetting visited_chars to array of 0s')
             visited_chars = [0] * 256
             for j in range(i, len(s)):
+                print(f'Checking substring -> {s[i:j+1]}')
                 # stop checking current substr if current char is visited
                 if (visited_chars[ord(s[j])] == True):
+                    print(f'Char -> {s[j]} is a repeating char - breaking loop')
                     break
                 # if not visited - update max substr len if current substr is >
                 # mark the current char as visited
                 else:
+                    print(f'Char -> {s[j]} is not a repeating char - checking max_substr_len')
                     max_substr_len = max(max_substr_len, j - i + 1)
                     visited_chars[ord(s[j])] = True
             # remove first char of previous window
-            visited_chars[ord(s[i])] = False
+            print(f'Outside of inner loop, removing char -> {s[i]} from visited chars\n')
         ############# End Magic ###############
+        print(f'Returning max_subtr_len -> {max_substr_len}')
         return max_substr_len
 
     def lengthOfLongestSubstringLinearTime(self, s: str) -> int:
@@ -102,8 +107,8 @@ if __name__=="__main__":
         "dvdf": 3
     }
 
-    arg_func_runner(sol.lengthOfLongestSubstring, test_map, func_str="abcdefg")
-    print('\n\n')
-    arg_func_runner(sol.lengthOfLongestSubstringLinearTime, test_map, func_str="abcabcbb")
-    print('\n\n')
-    arg_func_runner(sol.lengthOfLongestSubstring24msSolution, test_map, func_str="pwwkew")
+    arg_func_runner(sol.lengthOfLongestSubstring, test_map, func_str="dvdf")
+    #print('\n\n')
+    #arg_func_runner(sol.lengthOfLongestSubstringLinearTime, test_map, func_str="abcabcbb")
+    #print('\n\n')
+    #arg_func_runner(sol.lengthOfLongestSubstring24msSolution, test_map, func_str="pwwkew")
