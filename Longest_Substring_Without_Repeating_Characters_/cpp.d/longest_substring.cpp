@@ -1,18 +1,27 @@
 #include <vector>
 #include <stdio.h>
 #include <iostream>
+#include <algorithm>
 #include <unordered_map>
 
-/*
-- colored output -> https://stackoverflow.com/questions/9158150/colored-output-in-c/9158263
-*/
 
 typedef std::unordered_map<std::string, int> expected_result;
 
 class LongestSubstring {
 public:
     int lengthOfLongestSubstring(std::string s){
-        return 3;
+        std::array <int, 256> last_index;
+        last_index.fill(-1);
+        int n = s.length();
+        int max_substr_len = 0;
+        int i = 0;
+
+        for (int j=0; j<n; j++){
+            i = std::max(i, last_index[(int)(s[j])] + 1);
+            max_substr_len = std::max(max_substr_len, j - i + 1);
+            last_index[(int)(s[j])] = j;
+        }
+        return max_substr_len;
     }
 
     bool function_validate(std::string s, int res){
