@@ -22,13 +22,13 @@ def find_replace_difficulty_lines(_file):
     #print(f'Lines post-swap -> {readme_lines}')
     with open(_file, 'w+') as f:
         for line in readme_lines:
-            f.write(line)
+            f.write(line + '\n')
 
 read_me = [os.path.join(dir, 'README.md')
            for dir in os.listdir()
            if re.match(r'^[A-Z]', dir)
            and os.path.isdir(dir)]
 
-for _file in read_me[:1]:
+for _file in read_me[:]:
     print(_file)
     find_replace_difficulty_lines(_file)
