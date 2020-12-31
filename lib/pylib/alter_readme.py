@@ -18,11 +18,11 @@ def find_replace_difficulty_lines(_file):
         swap_line = HARD
     #print(f'Lines pre-swap -> {readme_lines}')
     readme_lines.remove(difficulty_line)
-    readme_lines.insert(difficulty_index, swap_line)
+    readme_lines.insert(difficulty_index, swap_line + '\n')
     #print(f'Lines post-swap -> {readme_lines}')
     with open(_file, 'w+') as f:
         for line in readme_lines:
-            f.write(line + '\n')
+            f.write(line)
 
 read_me = [os.path.join(dir, 'README.md')
            for dir in os.listdir()

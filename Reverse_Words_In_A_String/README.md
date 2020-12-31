@@ -1,5 +1,5 @@
 # Reverse Words in a String (#151)
-#### Difficulty: ```Medium```
+#### Difficulty: ![#1589F0](https://via.placeholder.com/15/1589F0/000000?text=+) ```Medium```
 #### Description:
 - Given an input string, reverse the string word by word.
 - Note:

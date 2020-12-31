@@ -1,5 +1,5 @@
 # Cinema Seat Allocation (#1386)
-#### Difficulty: ```Medium```
+#### Difficulty: ![#1589F0](https://via.placeholder.com/15/1589F0/000000?text=+) ```Medium```
 #### Description:
 ![blank seat image](.img/blank_seats.png)
 - A cinema has `n` rows of seats, numbered from 1 to n and there are ten seats in each row, labelled from 1 to 10 as shown in the figure above.
