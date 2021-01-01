@@ -1,5 +1,5 @@
 # Subrectangle Queries (#1476)
-#### Difficulty: ```Medium```
+#### Difficulty: ![#1589F0](https://via.placeholder.com/15/1589F0/000000?text=+) ```Medium```
 #### Description:
 - Implement the class SubrectangleQueries which receives a rows x cols rectangle as a matrix of integers in the constructor and supports two methods:
    1. updateSubrectangle(int row1, int col1, int row2, int col2, int newValue)

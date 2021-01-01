@@ -1,5 +1,5 @@
 # Minimum Time Visiting All Points (#1266)
-#### Difficulty: ```Easy```
+#### Difficulty: ![#c5f015](https://via.placeholder.com/15/c5f015/000000?text=+) ```Easy```
 #### Description:
 - On a plane there are n points with integer coordinates points[i] = [xi, yi]. Your task is to find the minimum time in seconds to visit all points.
 - You can move according to the next rules:

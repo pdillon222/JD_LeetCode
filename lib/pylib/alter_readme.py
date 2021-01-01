@@ -1,14 +1,18 @@
 import os
 import re
 
+<<<<<<< HEAD
 BASE_DIR = os.path.split(os.path.abspath(__file__))[0]
 BASE_DIR = os.path.join(BASE_DIR.split('JD_LeetCode')[0], 'JD_LeetCode')
 assert os.path.isdir(BASE_DIR), f'[Error]: {BASE_DIR} not recognized as directory'
 
+=======
+>>>>>>> f64b3ed74b46186899070af1009423d06a37e750
 EASY = "#### Difficulty: ![#c5f015](https://via.placeholder.com/15/c5f015/000000?text=+) ```Easy```"
 MEDIUM = "#### Difficulty: ![#1589F0](https://via.placeholder.com/15/1589F0/000000?text=+) ```Medium```"
 HARD = "#### Difficulty: ![#f03c15](https://via.placeholder.com/15/f03c15/000000?text=+) ```Hard```"
 
+<<<<<<< HEAD
 def find_replace_difficulty_lines(_file, dry_run=False):
     """
     Locates all directories containing LeetCode challenge problems
@@ -21,6 +25,9 @@ def find_replace_difficulty_lines(_file, dry_run=False):
     Notes:
         Use cautiously - script will overwrite existing files if dry_run == False
     """
+=======
+def find_replace_difficulty_lines(_file):
+>>>>>>> f64b3ed74b46186899070af1009423d06a37e750
     with open(_file, 'r') as f:
         readme_lines = [line for line in f.readlines()]
     difficulty_line = [line for line in readme_lines if line.startswith('#### Difficulty')][0]
@@ -31,6 +38,7 @@ def find_replace_difficulty_lines(_file, dry_run=False):
         swap_line = MEDIUM
     else:
         swap_line = HARD
+<<<<<<< HEAD
     if dry_run: print(f'Lines pre-swap -> {readme_lines}')
     readme_lines.remove(difficulty_line)
     readme_lines.insert(difficulty_index, swap_line + '\n')
@@ -48,3 +56,21 @@ read_me = [os.path.join(os.path.join(BASE_DIR, dir), 'README.md')
 for _file in read_me[:]:
     print(_file)
     find_replace_difficulty_lines(_file, dry_run=True)
+=======
+    #print(f'Lines pre-swap -> {readme_lines}')
+    readme_lines.remove(difficulty_line)
+    readme_lines.insert(difficulty_index, swap_line + '\n')
+    #print(f'Lines post-swap -> {readme_lines}')
+    with open(_file, 'w+') as f:
+        for line in readme_lines:
+            f.write(line)
+
+read_me = [os.path.join(dir, 'README.md')
+           for dir in os.listdir()
+           if re.match(r'^[A-Z]', dir)
+           and os.path.isdir(dir)]
+
+for _file in read_me[:]:
+    print(_file)
+    find_replace_difficulty_lines(_file)
+>>>>>>> f64b3ed74b46186899070af1009423d06a37e750

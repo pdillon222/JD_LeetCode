@@ -1,5 +1,5 @@
 # Unique Email Addresses (#929)
-#### Difficulty: ```Easy```
+#### Difficulty: ![#c5f015](https://via.placeholder.com/15/c5f015/000000?text=+) ```Easy```
 #### Description:
 - Every email consists of a local name and a domain name, separated by the @ sign.
 - For example, in alice@leetcode.com, alice is the local name, and leetcode.com is the domain name.
