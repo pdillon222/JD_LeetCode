@@ -98,12 +98,12 @@ class Solution:
 
 if __name__=="__main__":
     sol = Solution()
-    test_map = {
-        "abcabcbb": 3,
-        "bbbbb": 1,
-        "pwwkew": 3,
-        "abcdefg": 7,
-        "aab": 2,
-        "dvdf": 3
-    }
+    test_map = [
+        (3, ["abcabcbb"]),
+        (1, ["bbbbb"]),
+        (3, ["pwwkew"]),
+        (7, ["abcdefg"]),
+        (2, ["aab"]),
+        (3, ["dvdf"])
+    ]
     arg_func_runner(sol.lengthOfLongestSubstring, args=["abcdefg"], map=test_map)
