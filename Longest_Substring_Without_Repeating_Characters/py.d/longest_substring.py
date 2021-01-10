@@ -1,6 +1,6 @@
 import cProfile
 import argparse
-from profiler import arg_func_runner
+from arg_orchestrator import arg_func_runner
 from stdout import GREEN_CHECK, RED_OCT
 
 
@@ -106,9 +106,4 @@ if __name__=="__main__":
         "aab": 2,
         "dvdf": 3
     }
-
-    arg_func_runner(sol.lengthOfLongestSubstring, test_map, func_str="dvdf")
-    #print('\n\n')
-    #arg_func_runner(sol.lengthOfLongestSubstringLinearTime, test_map, func_str="abcabcbb")
-    #print('\n\n')
-    #arg_func_runner(sol.lengthOfLongestSubstring24msSolution, test_map, func_str="pwwkew")
+    arg_func_runner(sol.lengthOfLongestSubstring, args=["abcdefg"], map=test_map)
