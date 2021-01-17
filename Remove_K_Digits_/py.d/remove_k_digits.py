@@ -10,15 +10,9 @@ class Solution:
         # conversely - in descending order -> first k digits
         # everything else
         n = len(num)
-        index = 1
         if k >= n: return '0'
         if k == 0: return num
         num_stack = []
-        while index < n and k:
-            print(f'char -> {num[index]}; {k} remaining chars to remove')
-            if int(num[index]) >= int(num[index - 1]):
-                print(f'Adding {num[index]} to stack')
-
 
 
 
@@ -34,4 +28,4 @@ if __name__=="__main__":
         ('221', [5, '765028321']),
         ('1118', [2, '121198'])
     ]
-    arg_func_runner(sol.removeKdigits, args=['16374112', 2], map=test_map)  # "134112"
+    arg_func_runner(sol.removeKdigits, args=['16374112', 3], map=test_map)  # "13112"
