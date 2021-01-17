@@ -34,6 +34,6 @@ def arg_func_runner(func: Callable, *args, **kwargs) -> None:
             assert positional_args, \
                 f'[Error]: {func} requires a list of arguments'
             funcout = f'Running function w/ positional args -> '
-            funcout += f'"{", ".join(positional_args)}"'
+            funcout += f'"{", ".join([str(arg) for arg in positional_args])}"'
             print(f'{"-" * len(funcout)}\n{funcout}\n{"-" * len(funcout)}')
             func(*positional_args)
