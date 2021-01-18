@@ -25,7 +25,7 @@ class Solution:
         # - len(remove_indices) < k # indicates remaining chars are ascending -> thus we chop off the end
 
         # if k leftover - we simply subtract it from remaining range
-
+        print(f'remaining value of k -> {k}')
         reduced_string =  ''.join([num[index] for index in range(len(num) - k)
                                   if index not in remove_indices])
         zero_check = all([_char == '0' for _char in reduced_string])
