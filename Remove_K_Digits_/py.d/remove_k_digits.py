@@ -49,4 +49,4 @@ if __name__=="__main__":
         ('221', ['765028321', 5]),
         ('1118', ['121198', 2])
     ]
-    arg_func_runner(sol.removeKdigits, args=['1234567890', 9], map=test_map[-2:])  # "0"
+    arg_func_runner(sol.removeKdigits, args=['1234567890', 9], map=test_map)#[-2:])  # "0"
