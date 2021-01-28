@@ -30,7 +30,8 @@ class Solution {
     std::string removeKdigits(std::string num, int k) {
       std::string res = "";
       this->buildLowestNumString(num, k, res);
-      return res;
+      while (res[0] == '0') res.erase(0,1);
+      return (res == "") ? "0" : res;
     }
 };
 
@@ -40,5 +41,11 @@ int main(){
   std::string str = "121198";
   int n = 2;
   std::cout << sol.removeKdigits(str, n) << std::endl;  //1118
+  str = "10200";
+  n = 1;
+  std::cout << sol.removeKdigits(str, n) << std::endl;  //200
+  str = "10";
+  n = 2;
+  std::cout << sol.removeKdigits(str, n) << std::endl; //0
   return 0;
 }
