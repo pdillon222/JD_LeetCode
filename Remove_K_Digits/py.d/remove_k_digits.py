@@ -12,6 +12,8 @@ class Solution:
                 result.pop()
                 k -= 1
             result.append(d)
+        # [:None] is valid; saying if `-k` != 0
+        # if result != []
         return ''.join(result).lstrip('0')[:-k or None] or '0'
 
 
