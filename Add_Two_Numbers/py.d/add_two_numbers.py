@@ -23,6 +23,16 @@ class ListNode:
             temp = temp.next
         print(lst_str + 'Null')
 
+    def sum_reverse(self):
+        pow = 0
+        sum = 0
+        temp = self
+        while temp:
+            sum += temp.val * (10 ** pow)
+            temp = temp.next
+            pow += 1
+        return sum
+
     def __iadd__(self, other):
         """
         Overload for node1 += node2 (node1.next = node2)
@@ -44,5 +54,5 @@ if __name__=="__main__":
     list1, list2 = ListNode(), ListNode()
     list1.init_from_array([2, 4, 3])
     list2.init_from_array([5, 6, 4])
-    list1 += list2
-    list1.traverse()
+    print(list1.sum_reverse())
+    print(list2.sum_reverse())
