@@ -11,9 +11,9 @@ class ListNode:
 
     def init_from_array(self, array):
         if not self.val:
-           self.val = array.pop()
+           self.val = array.pop(0)
         while array:
-            self += ListNode(array.pop())
+            self += ListNode(array.pop(0))
 
     def traverse(self):
         temp = self
@@ -41,6 +41,8 @@ class Solution:
 
 if __name__=="__main__":
     sol = Solution()
-    list1 = ListNode()
-    list1.init_from_array([2,4,3])
+    list1, list2 = ListNode(), ListNode()
+    list1.init_from_array([2, 4, 3])
+    list2.init_from_array([5, 6, 4])
+    list1 += list2
     list1.traverse()
