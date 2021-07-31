@@ -44,9 +44,27 @@ class ListNode:
         return self
 
 class Solution:
-    def addTwoNumbers(self, l1: ListNode, l2: ListNode) -> ListNode:
-        pass
+    def sum_reverse(self, listnode):
+        pow = 0
+        sum = 0
+        temp = listnode
+        while temp:
+            sum += temp.val * (10 ** pow)
+            temp = temp.next
+            pow += 1
+        return sum
 
+    def addTwoNumbers(self, l1: ListNode, l2: ListNode) -> ListNode:
+        sum = self.sum_reverse(l1) + self.sum_reverse(l2)
+        new_node = ListNode()
+        temp = new_node
+        while sum:
+            remainder = sum % 10
+            sum //= 10
+            temp.val = remainder
+            temp.next = ListNode()
+            temp = temp.next
+        return new_node
 
 
 if __name__=="__main__":
@@ -54,5 +72,4 @@ if __name__=="__main__":
     list1, list2 = ListNode(), ListNode()
     list1.init_from_array([2, 4, 3])
     list2.init_from_array([5, 6, 4])
-    print(list1.sum_reverse())
-    print(list2.sum_reverse())
+    sol.addTwoNumbers(list1, list2)
