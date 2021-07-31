@@ -62,8 +62,9 @@ class Solution:
             remainder = sum % 10
             sum //= 10
             temp.val = remainder
-            temp.next = ListNode()
-            temp = temp.next
+            if sum:
+                temp.next = ListNode()
+                temp = temp.next
         return new_node
 
 
