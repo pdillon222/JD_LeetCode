@@ -50,8 +50,10 @@ class Solution:
         temp = listnode
         while temp:
             sum += temp.val * (10 ** pow)
+            print(f'New sum val => {sum}; pow val => {pow}')
             temp = temp.next
             pow += 1
+        print(f'Reversed int -> {sum}')
         return sum
 
     def addTwoNumbers(self, l1: ListNode, l2: ListNode) -> ListNode:
@@ -71,6 +73,11 @@ class Solution:
 if __name__=="__main__":
     sol = Solution()
     list1, list2 = ListNode(), ListNode()
-    list1.init_from_array([2, 4, 3])
+    #list1.init_from_array([2, 4, 3])
+    list1.init_from_array([1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1])
     list2.init_from_array([5, 6, 4])
-    sol.addTwoNumbers(list1, list2)
+    sol.sum_reverse(list1)
+    '''
+    new_node = sol.addTwoNumbers(list1, list2)
+    new_node.traverse()
+    '''
