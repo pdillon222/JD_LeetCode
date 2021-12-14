@@ -17,13 +17,13 @@ struct ListNode {
 class Solution {
 public:
 	  void insert(ListNode** root, int item){
-	      ListNode* temp = new ListNode;
-	      ListNode* ptr;
+	      ListNode* temp = new ListNode;                                   // initialize New ListNode, incase root is empty
+	      ListNode* ptr;                                                   // initialize ListNode to be traversed ?
 	      temp->val = item;
 	      temp->next = NULL;
 
 	      if (*root == NULL){
-			      *root = temp;
+			      *root = temp;                                               // if value of root is empty
 	      } else {
 			      ptr = *root;
 			      while (ptr->next != NULL)
